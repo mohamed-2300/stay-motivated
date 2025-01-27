@@ -27,7 +27,7 @@ function ActivityForm({ addActivity }) {
         onChange={(e) => setCalories(e.target.value)}
         className="text-black border-2 p-2 mb-2 w-full"
       />
-      <button type="submit" className="bg-yellow-400 p-2 w-full">Ajouter</button>
+      <button type="submit" className="hover:bg-yellow-600 duration-300 ease-out scale-100 hover:scale-105 bg-yellow-400 p-2 w-full">Ajouter</button>
     </form>
   );
 }

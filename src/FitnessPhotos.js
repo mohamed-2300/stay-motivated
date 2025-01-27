@@ -83,9 +83,9 @@ function FitnessPhotos() {
 
   return (
     <div>
-      <div className="grid grid-cols-3 gap-4 p-4">
+      <div className="flex justify-evenly flex-wrap gap-4 p-4">
         {photos.map((photo) => (
-          <div key={photo.id} className="border-2 border-yellow-400 p-2">
+          <div key={photo.id} className="scale-100 hover:scale-105 duration-300 w-72 border-2 border-yellow-400 p-2">
             <img
               src={photo.src}
               alt={photo.description || 'Photo de fitness'}
@@ -99,13 +99,13 @@ function FitnessPhotos() {
 
       {/* Si `selectedExercises` n'est pas null, afficher la fenêtre modale */}
       {selectedExercises && (
-        <div className="fixed inset-0 bg-gray-700 bg-opacity-50 flex justify-center items-center z-50">
+        <div onClick={closeModal} className="fixed inset-0 bg-gray-700 bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-black text-white p-6 rounded-lg shadow-lg max-w-lg w-full">
             <button
               onClick={closeModal}
               className="absolute top-2 right-2 text-white text-2xl"
             >
-              X
+              <ion-icon name="close-outline"></ion-icon>
             </button>
             <h2 className="text-2xl font-bold mb-4">
               {`Workout to do: ${selectedExercises.description}`}

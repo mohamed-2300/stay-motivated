@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 function Header() {
   const [activeForm, setActiveForm] = useState(null);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleMenuClick = (formName) => {
     setActiveForm(formName);
@@ -11,29 +12,50 @@ function Header() {
     setActiveForm(null);
   };
 
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   return (
     <div>
       {/* Barre de navigation */}
-      <header className="bg-black text-white p-4 flex justify-between items-center fixed top-0 left-0 w-full z-50 shadow-lg">
+      <header className=" bg-black text-white md:px-20 py-4 md:flex md:justify-between md:items-center fixed top-0 left-0 w-full z-50 shadow-lg">
         {/* Nom de l'application */}
-        <h1 className="text-2xl font-bold">Stay Motivated</h1>
+
+        <div className="flex justify-between items-center">
+          <span className='flex md:justify-between items-center cursor-pointer'><img src="./st.png" alt="" className='pr-2' style={{ height: "50px", borderRadius: "50%" }} />
+            <h1 className="text-2xl font-bold ">Stay Motivated</h1></span>
+          <span className='text-3xl cursor-pointer mx-2 md:hidden'>
+            <ion-icon name={menuOpen ? "close-outline" : "menu-outline"} onClick={toggleMenu}></ion-icon></span>
+        </div>
 
         {/* Menu */}
+        
         <nav>
-          <ul className="flex space-x-4">
-            <li>
+          <ul className={`md:flex md:items-center z-[-1] md:z-auto md:static absolute bg-black
+           w-full left-0 md:w-auto md:py-0 py-0 md:pl-0 pl-7 md:opacity-100 
+           ${menuOpen ? "top-20 opacity-100" : "top-[-400px] opacity-0"} 
+           top-[-400px] transition-all
+            ease-in duration-500`}>
+            <li className='mx-4 my-6 md:my-0'>
               <button onClick={() => handleMenuClick('subscribe')} className="hover:underline">
                 Subscribe
               </button>
             </li>
-            <li>
+            <li className='mx-4 my-6 md:my-0'>
               <button onClick={() => handleMenuClick('contact')} className="hover:underline">
                 Contact
               </button>
             </li>
-            <li>
+            <li className='mx-4 my-6 md:my-0'>
               <button onClick={() => handleMenuClick('login')} className="hover:underline">
                 Login
+              </button>
+            </li>
+            <li className='mx-4 my-6 md:my-0'>
+              <button className="bg-gray-700 text-yellow-300  px-4 py-1 rounded hover:scale-110 hover:bg-gray-800 duration-300">
+                Get Started
               </button>
             </li>
           </ul>
@@ -41,14 +63,17 @@ function Header() {
       </header>
 
       {/* Formulaire affiché conditionnellement */}
+
+      
       {activeForm && (
-        <div className="fixed inset-0 bg-gray-700 bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full relative">
+        <div onClick={closeForm} className="fixed inset-0 bg-gray-700 bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full relative ">
             <button
               onClick={closeForm}
               className="absolute top-2 right-2 text-black text-2xl"
             >
-              X
+              <ion-icon name="close-outline"></ion-icon>
+
             </button>
 
             {/* Formulaire de paiement */}

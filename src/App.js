@@ -18,7 +18,7 @@ function App() {
   return (
     <div className="bg-black text-white">
       <Header />
-      <div className="bg-black text-white min-h-screen flex flex-col items-center">
+      <div className="mt-20 bg-black text-white min-h-screen flex flex-col items-center">
       <h1 className="text-4xl font-bold text-center p-6 text-yellow-400">
         Suivi d'activités sportives
       </h1>
